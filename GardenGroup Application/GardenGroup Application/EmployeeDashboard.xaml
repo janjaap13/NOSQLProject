@@ -1,0 +1,147 @@
+﻿<Window x:Class="GardenGroup_Application.EmployeeDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GardenGroup_Application"
+        mc:Ignorable="d"
+        Title="EmployeeDashboard" Height="720" Width="1280">
+
+    <Grid x:Name="LayoutRoot" Background="White" ShowGridLines="False">
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="20*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="dashButton" Content="Dashboard" 
+                Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch" 
+                FontFamily="Calibri" FontSize="36"
+                Background="#FF333333" Foreground="#FFF0F0F0" Click="dashButton_Click"/>
+
+        <Button x:Name="ticketButton" Content="Ticket Overview" 
+                Click="ticketButton_Click"
+                Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch"
+                FontFamily="Calibri" FontSize="36"
+                Background="#FF333333" Foreground="#FFF0F0F0"/>
+
+        <Button x:Name="userButton" Content="User Management" 
+                Click="userButton_Click" 
+                Grid.Column="3" Grid.Row="0" HorizontalAlignment="Stretch"
+                FontFamily="Calibri" FontSize="36"
+                Background="#FF333333" Foreground="#FFF0F0F0"/>
+
+        <Label x:Name="titleLabel" Content="Title" 
+               FontFamily="Calibri" FontSize="36"
+               FontWeight="Bold" 
+               Grid.Column="1" Grid.Row="2" 
+               HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+
+
+        <Button x:Name="editButton" Content="Edit Selected" 
+                Grid.Column="3" Grid.Row="2" 
+                FontFamily="Calibri" FontSize="30"
+                Background="#FF333333" Foreground="#FFF0F0F0" 
+                Click="editButton_Click"/>
+
+        <Button x:Name="newButton" Content="Add New" 
+                Grid.Column="2" Grid.Row="2" 
+                FontFamily="Calibri" FontSize="30"
+                Background="#FF333333" Foreground="#FFF0F0F0" Click="newButton_Click"/>
+
+        <Popup
+            x:Name="popup"
+            Placement="Center"
+            Width="500" Height="100"
+            StaysOpen="True">
+            
+            <Button 
+                x:Name="closeButton"
+                Content="Nothing selected!"
+                Background="#FF333333" 
+                Foreground="#FFF0F0F0"
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center"
+                FontFamily="Calibri" 
+                FontSize="36"
+                Click="closeButton_Click"
+                Width="500" Height="100">
+            </Button>
+        </Popup>
+
+        <DataGrid x:Name="dgEmployee"  
+                      IsReadOnly="True" AutoGeneratingColumn="OnAutoGeneratingColumn" 
+                      Grid.Row="4" ColumnWidth="*"  
+                      FontFamily="Calibri" FontSize="14"
+                      Background="White" RowBackground="LightGray" AlternatingRowBackground="White" 
+                      Grid.ColumnSpan="5" Margin="67,23,67,45" Grid.RowSpan="3">
+            <DataGrid.CellStyle>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=Content.Text, RelativeSource={RelativeSource Self}}" Value="High"/>
+                                <Condition Binding="{Binding Path=Column.Header, RelativeSource={RelativeSource Self}}" Value="Priority" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Background" Value="OrangeRed" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=Content.Text, RelativeSource={RelativeSource Self}}" Value="Medium"/>
+                                <Condition Binding="{Binding Path=Column.Header, RelativeSource={RelativeSource Self}}" Value="Priority" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Background" Value="Yellow" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=Content.Text, RelativeSource={RelativeSource Self}}" Value="Low"/>
+                                <Condition Binding="{Binding Path=Column.Header, RelativeSource={RelativeSource Self}}" Value="Priority" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Background" Value="LightGreen" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
+        <Button x:Name="unsolvedButton"  
+            Grid.Column="1" Grid.Row="5"
+            FontFamily="Calibri" FontSize="46"
+            Background="#FF333333" Foreground="#FFF0F0F0" Click="unsolvedButton_Click"/>
+        <Button x:Name="deadlineButton"  
+            Grid.Column="3" Grid.Row="5"
+            FontFamily="Calibri" FontSize="46"
+            Background="#FF333333" Foreground="#FFF0F0F0" Click="deadlineButton_Click"/>
+        <Label x:Name="unsolvedLabel" Content="Unsolved incidents"
+               FontFamily="Calibri" FontSize="36"
+               FontWeight="Bold" 
+               Grid.Column="1" Grid.Row="4" 
+               HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <Label x:Name="deadlineLabel" Content="Incedents past deadline"
+               FontFamily="Calibri" FontSize="36"
+               FontWeight="Bold" 
+               Grid.Column="3" Grid.Row="4" 
+               HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+
+        <Button x:Name="backButton" Content=" ← Log Out "
+            Grid.Column="1" Grid.Row="6"
+            FontFamily="Calibri" FontSize="28" Padding="3"
+            HorizontalAlignment="Left" VerticalAlignment="Bottom"
+            Background="#FF333333" Foreground="#FFF0F0F0" Click="backButton_Click" Height="40" Width="155"/>
+    </Grid>
+
+</Window>

@@ -1,0 +1,14 @@
+﻿<localBase:EmployeeWindowBase x:Class="GardenGroup_Application.EditEmployee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GardenGroup_Application"
+        xmlns:localUc="clr-namespace:GardenGroup_Application.UserControls"
+        xmlns:localBase="clr-namespace:GardenGroup_Application.WindowBaseClasses"
+        mc:Ignorable="d"
+        Title="EditEmployee" Height="720" Width="1280">
+    <Grid>
+        <localUc:EmployeeEditUserControl CancelButtonClicked="CancelAction" ConfirmButtonClicked="UpdateUser"></localUc:EmployeeEditUserControl>
+    </Grid>
+</localBase:EmployeeWindowBase>

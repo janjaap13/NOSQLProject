@@ -1,0 +1,10 @@
+Eind gebruiker:
+
+email: thijs@hotmail.com
+wachtwoord: otter
+
+
+Servicedesk medewerker:
+
+email: admin@hotmail.com
+wachtwoord: admin123

@@ -1,0 +1,140 @@
+﻿<local:ConfirmAndCancelEventBase x:Class="GardenGroup_Application.UserControls.BaseTicketTextBoxes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GardenGroup_Application.UserControls"
+             mc:Ignorable="d" Width="1280" Height="720">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="8*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60*" />
+            <ColumnDefinition Width="40*" />
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="Title" 
+               Content="{Binding Path=titleText, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
+               HorizontalAlignment="Left" 
+               Margin="10,10,0,0" 
+               VerticalAlignment="Top" 
+               FontSize="36" 
+               FontFamily="Calibri"/>
+
+        <Label x:Name="SubjectLabel" 
+               Grid.Row="1"
+               Content="Subject:" 
+               HorizontalAlignment="Left" 
+               Margin="10,0,0,0" 
+               VerticalAlignment="Top" 
+               FontSize="24" 
+               FontFamily="Calibirie"/>
+        
+        <TextBox x:Name="SubjectTextBox" 
+                Grid.Row="1"
+                HorizontalAlignment="Left" 
+                Margin="10,40,0,0" 
+                TextWrapping="Wrap" 
+                VerticalAlignment="Top" 
+                Width="200" FontSize="24" 
+                Text="{Binding Path=ticket.Subject, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
+                FontFamily="Calibri"/>
+        
+        <Label x:Name="DetailsLabel" 
+                Grid.Row="2"
+                Content="Details:" 
+                HorizontalAlignment="Left" 
+                Margin="10,0,0,0" 
+                VerticalAlignment="Top" 
+                FontSize="24" 
+                FontFamily="Calibri"/>
+        
+        <TextBox x:Name="DetailsTextBox" 
+                 Grid.Row="2"
+                 HorizontalAlignment="Left" 
+                 Margin="10,40,0,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top"
+                 Width="500" 
+                 FontSize="24" 
+                 Height="100" 
+                 Text="{Binding Path=ticket.Details, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
+                 FontFamily="Calibri"/>
+        
+        <Label x:Name="PriorityLabel" 
+               Grid.Row="3"
+               Content="Priority:" 
+               HorizontalAlignment="Left" 
+               Margin="10,0,0,0" 
+               VerticalAlignment="Top" 
+               FontSize="24" 
+               FontFamily="Calibri"/>
+        
+        <ComboBox x:Name="PriorityComboBox" 
+                  Grid.Row="3"
+                  HorizontalAlignment="Left" 
+                  Margin="10,40,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="200" 
+                  FontSize="24" 
+                  SelectedIndex="{Binding Path=priority, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
+                  FontFamily="Calibri">
+            <ComboBoxItem Content="Low" FontFamily="Calibri"/>
+            <ComboBoxItem Content="Medium" FontFamily="Calibri"/>
+            <ComboBoxItem Content="High" FontFamily="Calibri"/>
+        </ComboBox>
+        
+        <Label x:Name="DeadlineLabel" 
+               Grid.Row="4"
+               PreviewTextInput="DeadlineLabel_PreviewTextInput"  
+               Content="Deadline:" 
+               HorizontalAlignment="Left" 
+               Margin="10,0,0,0" 
+               VerticalAlignment="Top" 
+               FontSize="24" 
+               FontFamily="Calibri"/>
+        
+        <TextBox x:Name="DeadlineTextBox"
+                 Grid.Row="4"
+                 Width="200"
+                 HorizontalAlignment="Left" 
+                 Margin="10,40,0,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 FontSize="24" 
+                 Text="{Binding Path=ticket.Deadline, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
+                 FontFamily="Calibirie"/>
+        
+        <Label x:Name="TypeLabel"
+               Grid.Row="5"
+               Content="Type:" 
+               HorizontalAlignment="Left" 
+               Margin="10,0,0,0" 
+               VerticalAlignment="Top" 
+               FontSize="24" 
+               FontFamily="Calibirie"/>
+        
+        <ComboBox x:Name="TypeComboBox" 
+                  Grid.Row="5"
+                  HorizontalAlignment="Left" 
+                  Margin="10,40,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="200" FontSize="24" 
+                  SelectedIndex="{Binding Path=ticketType, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
+                  FontFamily="Calibirie">
+            <ComboBoxItem Content="Hardware" FontFamily="Calibirie"/>
+            <ComboBoxItem Content="Software" FontFamily="Calibirie"/>
+            <ComboBoxItem Content="Service" FontFamily="Calibirie"/>
+        </ComboBox>
+
+        <local:ConfirmAndCancelButton CancelButtonClicked="CancelButton_Click" ConfirmButtonClicked="ConfirmButton_Click" Grid.Column="1" Grid.Row="7"></local:ConfirmAndCancelButton>
+    </Grid>
+</local:ConfirmAndCancelEventBase>
